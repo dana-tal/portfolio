@@ -1,0 +1,8 @@
+portfolio_server/.env
+portfolio_server/.env.development
+portfolio_server/.env.production
+
+portfolio_admin/.env
+portfolio_admin/.env.development
+portfolio_admin/.env.production
+

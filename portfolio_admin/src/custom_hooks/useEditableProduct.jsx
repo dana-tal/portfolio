@@ -1,0 +1,120 @@
+import { useState } from "react";
+import { requestProductAdd,requestProductUpdate, requestAllProducts, requestRemoveProducts } from "../utils/productRequests";
+
+
+export const useEditableProduct = () => { 
+      const [rows, setRows] = useState([]);
+      const [isLightboxOpen, setIsLightBoxOpen] = useState(false);
+      const [ productId, setProductId ] = useState(""); // the product to be editted 
+      const [feedbackMsg, setFeedbackMsg] = useState("");
+      const [errorMsg, setErrorMsg] = useState("");
+      const [loadingProducts, setLoadingProducts] = useState(false);
+
+
+    const handleEditProduct=(prodId) =>{
+             setProductId(prodId);
+             setIsLightBoxOpen(true);
+    }
+
+    const renderProductName = (params)=>{
+             return <span onClick={ ()=>{  handleEditProduct( params.row.id );  }} style={{ color:"blue", textDecoration:"underline" ,cursor: "pointer"}}>
+                {params.row.title}
+                </span>
+    }
+
+     const showFeedback = (msg)=>{
+             setFeedbackMsg(msg);
+              setTimeout(() => {
+                    setFeedbackMsg("");
+                    }, 4000);
+     }
+
+     const showErrorMsg =  (msg)=>{
+        setErrorMsg(msg);
+         setTimeout(() => {
+                    setErrorMsg("");
+                    }, 4000);
+     }
+    
+      const handleProductAdd = async (productObj, setError)=>{
+              
+        
+          const response = await requestProductAdd(productObj);
+          if (response.ok)
+          {
+              const product = response.data.productData ;
+              setRows( (prevRows)=>{  return [ product,...prevRows] } );
+              setIsLightBoxOpen(false);
+              showFeedback("Product added successfully");             
+          }
+          else
+          {
+               setError("root", { type: "server", message: response.message || "Adding failed" });
+          }
+         
+      }
+
+    const handleProductUpdate = async (productObj, setError)=>
+      {
+
+        const response = await requestProductUpdate(productObj);
+        if (response.ok)
+        {
+            const updatedProduct = response.data.productData ;
+            setRows( (prevRows)=>{  
+                let temp = [...prevRows]; 
+                let updated = temp.map( (product)=>{ if (product.id=== updatedProduct.id){ return updatedProduct } else { return product }  } );
+                return updated;
+            });
+            setIsLightBoxOpen(false);  
+            showFeedback("Product updated successfully");                 
+        }
+        else
+        {
+            setError("root", { type: "server", message: response.message || "Update failed" }); 
+        }
+    }
+
+
+      const handleRemoveProducts = async (ids) =>{
+
+        if (!ids || ids.length===0)
+        {
+            showErrorMsg("No products were selected for removal, please select some.");
+            return;
+        }
+        const response = await requestRemoveProducts(ids);
+        if (response.ok)
+        {
+            setRows( (prevRows)=> {  
+                       let temp = [ ...prevRows];
+                       const updatedRows  =  temp.filter( prod=> { return !ids.includes(prod.id) } )
+                       return updatedRows;
+             })
+              showFeedback("Product(s) removed successfully");     
+        }
+        
+
+      }
+
+      const fetchAllProducts = async () =>{
+
+            setLoadingProducts(true);
+           const response = await requestAllProducts();
+           if (response.ok)
+           {
+                setRows(response.data.productData);
+           }
+           
+           setLoadingProducts(false);
+      }
+
+
+      return { 
+                rows,setRows, handleProductAdd ,handleProductUpdate,
+                fetchAllProducts, handleRemoveProducts,isLightboxOpen,
+                setIsLightBoxOpen,renderProductName, productId, setProductId,
+                feedbackMsg, errorMsg,loadingProducts
+            };
+};
+
