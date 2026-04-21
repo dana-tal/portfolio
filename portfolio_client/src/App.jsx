@@ -3,8 +3,24 @@ import {Routes, Route} from 'react-router-dom';
 import AboutMe from "./components/AboutMe";
 import Projects from "./components/Projects";
 import ProjectPage from "./components/ProjectPage";
+import { requestAllProjects } from "./utils/projectRequests";
+
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect( ()=>{
+    
+    const fetchAllProjects = async ()=>
+    {
+        const response = await requestAllProjects();
+        console.log("projects");
+        console.log(response.data.projectData);
+    }
+
+    fetchAllProjects();
+
+  },[]);
 
   return (
     <>

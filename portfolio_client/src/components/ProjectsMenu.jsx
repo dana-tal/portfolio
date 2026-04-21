@@ -1,15 +1,25 @@
 import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ProjectsMenu = ({ projects }) => 
 {
   const [menuOrigin, setMenuOrigin] = useState(null);
   const open = Boolean(menuOrigin);
 
+  const location = useLocation();
+
+const isActive = 
+  location.pathname.startsWith("/projects") ||
+  location.pathname.startsWith("/project");
+
   return (
     <>
-      <Button variant="contained" className="navbar-button" onClick={(e) => setMenuOrigin(e.currentTarget)}>
+      <Button variant="contained" className="navbar-button" onClick={(e) => { e.preventDefault(); setMenuOrigin(e.currentTarget);  }}  sx={{
+    backgroundColor: isActive ? "#79BAEC !important" : undefined,
+    fontWeight: isActive ? "bold" : undefined,
+  }}>
         Projects
       </Button>
 
@@ -40,7 +50,6 @@ const ProjectsMenu = ({ projects }) =>
           >
             All Projects
           </MenuItem>
-
         {projects.map((project) => (
           <MenuItem
             key={project.id}

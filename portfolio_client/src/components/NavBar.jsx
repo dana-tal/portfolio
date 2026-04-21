@@ -7,10 +7,27 @@ import ProjectsMenu from './ProjectsMenu';
 
 import {  Menu, MenuItem } from "@mui/material";
 
+import { useQuery } from '@tanstack/react-query';
+import { requestAllProjects } from '../utils/projectRequests';
+
+
 function NavBar({ links }) {
+
+   const { data, isLoading, error } = useQuery({
+    queryKey: ['projects'],
+    queryFn: requestAllProjects
+  });
+
+
+
+ const projects = data?.data?.projectData ?? [];
+ 
+   console.log("In Navbar");
+   console.log(projects);
+
    return (
     <Box className="navbar-container">
-      <Stack className="navbar-stack" direction="row" flexWrap="wrap" gap={2}>
+      <Stack className="navbar-stack" direction="row"  gap={2}>
         { links.map( link =>{ 
              
              if ( link.link)
@@ -23,7 +40,7 @@ function NavBar({ links }) {
              }
         })
         }
-        <ProjectsMenu  projects={[{id:1, title:'Project A'},{id:2, title:'Project B'}, {id:3, title:'Project C'} ]}/>
+        <ProjectsMenu  projects={projects}/>
       </Stack>
     </Box>
   );
