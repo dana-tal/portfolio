@@ -5,6 +5,8 @@ const addProject = async (req,res) =>
     try
     {
         const projectObj = req.body;
+        const tags = Array.isArray(projectObj.tags) ? projectObj.tags.map(tag => tag.trim()).filter(Boolean) : [];
+        projectObj.tags = [...new Set(tags)];
         const newProject = await projectService.addProject(projectObj);
         return res.status(201).json({ ok:true, projectData: newProject, message: "Project added successfully" });
     }
@@ -23,7 +25,8 @@ const updateProject = async (req,res) =>
     {
         const id = req.params.id;        
         const projectObj = req.body;
-
+        const tags = Array.isArray(projectObj.tags) ? projectObj.tags.map(tag => tag.trim()).filter(Boolean) : [];
+        projectObj.tags = [...new Set(tags)];
         const updatedProject= await projectService.updateProject(id,projectObj);
         return res.status(200).json({ok:true, projectData:updatedProject, message:'Project updated successfully'});
     }

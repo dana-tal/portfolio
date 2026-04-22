@@ -81,8 +81,11 @@ const requestProjectAdd = async (project_obj) =>{
                 title: project_obj.title,
                 demo_link: project_obj.demo_link,
                 github_link: project_obj.github_link,
+                short_desc: project_obj.short_desc,
                 description: project_obj.description,
                 technologies: project_obj.technologies,
+                tags: project_obj.tags,
+                image: project_obj.image,
                 sortOrder: project_obj.sortOrder    
         },  { withCredentials: true } );
 
@@ -108,9 +111,12 @@ const requestProjectUpdate = async (project_obj)=>
                 title: project_obj.title,
                 demo_link: project_obj.demo_link,
                 github_link: project_obj.github_link,
+                short_desc: project_obj.short_desc,
                 description: project_obj.description,
                 technologies: project_obj.technologies,
-                  sortOrder: project_obj.sortOrder                   
+                tags: project_obj.tags,
+                image: project_obj.image,
+                sortOrder: project_obj.sortOrder                   
         },  { withCredentials: true } );
 
         return {
