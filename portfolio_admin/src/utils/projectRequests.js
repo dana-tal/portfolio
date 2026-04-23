@@ -86,6 +86,7 @@ const requestProjectAdd = async (project_obj) =>{
                 technologies: project_obj.technologies,
                 tags: project_obj.tags,
                 image: project_obj.image,
+                showProject: project_obj.showProject,
                 sortOrder: project_obj.sortOrder    
         },  { withCredentials: true } );
 
@@ -116,6 +117,7 @@ const requestProjectUpdate = async (project_obj)=>
                 technologies: project_obj.technologies,
                 tags: project_obj.tags,
                 image: project_obj.image,
+                showProject: project_obj.showProject,
                 sortOrder: project_obj.sortOrder                   
         },  { withCredentials: true } );
 

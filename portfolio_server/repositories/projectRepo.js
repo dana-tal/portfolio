@@ -10,6 +10,11 @@ const getAllProjects = (filters = {}) =>{
     return Project.find(filters).sort({ sortOrder: 1 });
 }
 
+const getPublicProjects = (filters = {}) => {
+    return Project.find({ ...filters, showProject: true })
+        .sort({ sortOrder: 1 });
+};
+
 const getProjectById = (id) => {
     return Project.findById(id);
 }
@@ -45,5 +50,6 @@ module.exports = {
     removeProjects,
     getProjectById,
     getAllProjects,
+    getPublicProjects,
     projectExists
 }

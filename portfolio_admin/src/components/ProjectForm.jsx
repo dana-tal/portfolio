@@ -1,13 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
 import {Button,TextField,Alert,Stack, Typography,Paper,Select,
-    MenuItem,FormControl,FormHelperText} from "@mui/material";
+    MenuItem,FormControl,FormHelperText, RadioGroup,FormControlLabel,Radio,} from "@mui/material";
 import { useEffect, useState} from "react";
 import { requestProjectById } from "../utils/projectRequests";
 import Autocomplete from "@mui/material/Autocomplete";
  
 const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
 
-    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",technologies:"",short_desc:"",description:"",tags:[],image:"",sortOrder:0 }, });
+    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",technologies:"",short_desc:"",description:"",tags:[],image:"",showProject:true,sortOrder:0 }, });
     const { handleSubmit,control,formState: { errors },reset, setError}  = projectForm;  
 
     const [selectedProject, setSelectedProject] = useState(null); // selectedProject will be an object containing the project to be updated
@@ -29,6 +29,7 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     description: selectedProject.description,
                     tags: Array.isArray(selectedProject.tags) ? selectedProject.tags: [],
                     image: selectedProject.image,
+                    showProject: selectedProject.showProject,
                     sortOrder: selectedProject.sortOrder
         });
     }
@@ -144,15 +145,16 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     name="demo_link"
                     control={control}
                     rules={{
-                                required: "Demo link is required",
-                                validate: (value) => {
-                                    try {
-                                            const url = new URL(value);
-                                            return true;
-                                    } catch {
-                                    return "Invalid URL";
-                                    }
+                            validate: (value) => {
+                                if (!value) return true; 
+
+                                try {
+                                new URL(value);
+                                return true;
+                                } catch {
+                                return "Invalid URL";
                                 }
+                            }
                             }}
                     render={({ field }) => (
                         <TextField
@@ -173,15 +175,16 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     name="github_link"
                     control={control}
                     rules={{
-                                required: "Github link is required",
-                                validate: (value) => {
-                                    try {
-                                            const url = new URL(value);
-                                            return true;
-                                    } catch {
-                                    return "Invalid URL";
-                                    }
+                            validate: (value) => {
+                                if (!value) return true; 
+
+                                try {
+                                new URL(value);
+                                return true;
+                                } catch {
+                                return "Invalid URL";
                                 }
+                            }
                             }}
                     render={({ field }) => (
                         <TextField
@@ -289,7 +292,7 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                  rules={{ 
                         required: "Project short description is missing." ,
                         minLength: { value: 5, message: "Description must be at least 5 characters" },
-                        maxLength: { value: 200, message: "Description cannot exceed 200 characters" },    
+                        maxLength: { value: 300, message: "Description cannot exceed 300 characters" },    
                          validate: (value) => {
                                 if (forbiddenChars.test(value)) {
                                     return "Short description contains forbidden characters: < > { } [ ]";
@@ -349,8 +352,33 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                 />
                 </Stack>
 
+                <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={1}
+                        alignItems={{ xs: "flex-start", sm: "center" }}
+                        sx={{ width: "100%" }}
+                        >
+                        <Typography sx={{ width: 80 }}>Show Project:</Typography>
+
+                        <Controller
+                            name="showProject"
+                            control={control}
+                            defaultValue={true}
+                            render={({ field }) => (
+                            <RadioGroup
+                                row
+                                value={String(field.value)} // ensure it's string for radios
+                                onChange={(e) => field.onChange(e.target.value === "true")}
+                            >
+                                <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="false" control={<Radio />} label="No" />
+                            </RadioGroup>
+                            )}
+                        />
+                        </Stack>
+
                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "flex-start", sm: "center" }} sx={{ width: "100%" }}>
-                    <Typography sx={{ width:80 }}>sortOrder:</Typography>
+                    <Typography sx={{ width:80 }}>Sort Order:</Typography>
                     <Controller
                     name="sortOrder"
                     control={control}

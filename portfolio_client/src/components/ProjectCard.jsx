@@ -1,4 +1,5 @@
 import { Container, Typography, Grid, Card, CardContent, CardMedia, CardActions, Button, Box, Chip,Stack,SvgIcon} from '@mui/material';
+import {Link} from 'react-router-dom';
 
 const ProjectCard = ({project}) => {
 
@@ -15,6 +16,7 @@ const CustomLaunchIcon = (props) => (
   </SvgIcon>
 );
 
+  const images_path = "/images/";
   return (
             <Card 
               sx={{ 
@@ -29,27 +31,29 @@ const CustomLaunchIcon = (props) => (
                 color:"white"
               }}
             >
-             {false && <CardMedia
-                component="img"
-                height="200"
-                image={project.image}
-                alt={project.title}
-              />}
+             
               <CardContent sx={{ flexGrow: 1 ,textAlign: 'center'}}>
                 <Typography gutterBottom variant="h5" component="h2" fontWeight="medium">
                   {project.title}
                 </Typography>
-                { false && <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                <Link to={`/project/${project.id}` }><CardMedia
+                component="img"
+                height="200"
+                image={images_path+project.image}
+                alt={project.title}
+                sx = {{ mb:2 ,border:"2px solid white "}}
+              /></Link>
+                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 ,textAlign: "left" }}>
                   {project.short_desc}
-                </Typography> }
-                {false && <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                </Typography> 
+             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
                   {project.tags.map((tag) => (
                     <Chip key={tag} label={tag} size="small" variant="outlined" />
                   ))}
-                </Stack>}
+               </Box>
               </CardContent>
               <CardActions sx={{ justifyContent: 'center', px: 2, pb: 2 }}>
-                <Button 
+                {project.github_link && <Button 
                   size="small" 
                    variant="contained" 
                   startIcon={<CustomGitHubIcon sx={{ color: 'white' }}/>} 
@@ -58,8 +62,8 @@ const CustomLaunchIcon = (props) => (
                   sx={{ color: 'white' }}
                 >
                   GitHub
-                </Button>
-                <Button 
+                </Button>}
+                {project.demo_link && <Button 
                   size="small" 
                   variant="contained" 
                   endIcon={<CustomLaunchIcon />} 
@@ -67,7 +71,7 @@ const CustomLaunchIcon = (props) => (
                   target="_blank"
                 >
                   Live Demo
-                </Button>
+                </Button>}
               </CardActions>
             </Card>
           

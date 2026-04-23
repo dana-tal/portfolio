@@ -12,7 +12,8 @@ const app = express();
 // List of allowed origins
 const allowedOrigins = [
   process.env.PRODUCTION_CLIENT,
-  process.env.DEV_CLIENT
+  process.env.DEV_CLIENT,
+  process.env.DEV_ADMIN,
 ].map(url => url.replace(/\/$/, "")); // remove trailing slash
 
 app.use(cors({

@@ -123,11 +123,30 @@ const getAllProjects = async (req,res) =>
 }
 
 
+const getPublicProjects = async (req,res) =>
+{
+    try
+    {    
+        console.log("in getPublicProjects");
+        const publicProjects = await projectService.getPublicProjects();
+        return res.status(200).json({ ok:true, projectData:publicProjects,message:"All public projects returned successfully"});
+    }
+    catch(err)
+    {
+         return res.status(500).json({
+                ok: false,
+                message: err.message                 
+            });    
+    }
+}
+
+
 module.exports ={
   addProject,
   updateProject,
   removeProject,
   removeProjects,
   getProjectById,
-  getAllProjects
+  getAllProjects,
+  getPublicProjects
 }

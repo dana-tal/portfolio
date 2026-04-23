@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const projectSchema = new mongoose.Schema(
     {
         title: { type: String, required: true, unique: true, trim: true },
-        demo_link: { type: String, required: true, trim: true },
-        github_link: {type:String, required:true, trim:true,default: "" },
+        demo_link: { type: String, required: false, trim: true, default: "" },
+        github_link: {type:String, required:false, trim:true,default: "" },
         short_desc: {type:String, required:true, trim:true,default: "" },
         description: { type: String, required: true, trim: true },
         image: {type:String, required:true, trim:true,default: "" },
         technologies: { type: String, required: true, trim: true },
         tags: {type: [String],default: []},
+        showProject: { type: Boolean, default: true },
         sortOrder :{ type:Number, required:true, default:0},
     },
     {

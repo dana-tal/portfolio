@@ -69,6 +69,21 @@ const getAllProjects = async () =>
 }
 
 
+const getPublicProjects = async () =>
+{
+    try
+    {
+        const publicProjects = await projectRepo.getPublicProjects();
+        return publicProjects;
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
+
+
+
 
 module.exports =
 {
@@ -78,5 +93,6 @@ module.exports =
     removeProjects,
     getProjectById,
     getAllProjects,
+    getPublicProjects,
     projectExists
 }
