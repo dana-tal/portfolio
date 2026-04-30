@@ -31,7 +31,6 @@ const requestProjectById = async (projectId) => {
         }
       catch(err)
       {
-        console.log("requestProjectById catch");
          return analize_error(err);
       }
 }

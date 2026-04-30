@@ -22,9 +22,6 @@ function NavBar({ links }) {
 
  const projects = data?.data?.projectData ?? [];
  
-   console.log("In Navbar");
-   console.log(projects);
-
    return (
     <Box className="navbar-container">
       <Stack className="navbar-stack" direction="row"  gap={2}>

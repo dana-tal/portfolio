@@ -10,6 +10,7 @@ const projectSchema = new mongoose.Schema(
         image: {type:String, required:true, trim:true,default: "" },
         technologies: { type: String, required: true, trim: true },
         tags: {type: [String],default: []},
+        imagesGallery: { type: String, required: false, trim: true, default: "" },
         showProject: { type: Boolean, default: true },
         sortOrder :{ type:Number, required:true, default:0},
     },

@@ -7,7 +7,7 @@ import Autocomplete from "@mui/material/Autocomplete";
  
 const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
 
-    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",technologies:"",short_desc:"",description:"",tags:[],image:"",showProject:true,sortOrder:0 }, });
+    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",technologies:"",short_desc:"",description:"",tags:[],imagesGallery:"",image:"",showProject:true,sortOrder:0 }, });
     const { handleSubmit,control,formState: { errors },reset, setError}  = projectForm;  
 
     const [selectedProject, setSelectedProject] = useState(null); // selectedProject will be an object containing the project to be updated
@@ -28,6 +28,7 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     short_desc: selectedProject.short_desc,
                     description: selectedProject.description,
                     tags: Array.isArray(selectedProject.tags) ? selectedProject.tags: [],
+                    imagesGallery: selectedProject.imagesGallery,
                     image: selectedProject.image,
                     showProject: selectedProject.showProject,
                     sortOrder: selectedProject.sortOrder
@@ -223,6 +224,30 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     />
                 </Stack>
                
+
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "flex-start", sm: "center" }} sx={{ width: "100%" }}>
+                    <Typography sx={{ width: { sm:80} }}>Images Gallery:</Typography>
+                    <Controller
+                    name="imagesGallery"
+                    control={control}
+                      rules={{ 
+                        minLength: { value: 2, message: "Title must be at least 2 characters" },
+                        maxLength: { value: 80, message: "Title cannot exceed 80 characters" },    
+                        pattern: { value: titleRegex, message: "Images gallery name contains invalid characters." },
+                     }}
+                    render={({ field }) => (
+                        <TextField
+                        {...field}
+                        size="small"                        
+                        error={!!errors.imagesGallery}
+                        helperText={errors.imagesGallery?.message}
+                        placeholder="Images Gallery Folder Name"
+                         sx={{ width: "100%" }}                      
+                        />
+                    )}
+                    />
+                </Stack>    
+
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "flex-start", sm: "center" }} sx={{ width: "100%" }}>
                 <Typography sx={{ width: 80 }}>Tech Stack:</Typography>
                 <Controller

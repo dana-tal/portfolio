@@ -65,9 +65,21 @@ function formatDate(dateString) {
 }
 
 
+const allImages = import.meta.glob(
+ "/src/assets/portfolio/**/*.{png,jpg,jpeg,PNG,JPG,JPEG}",
+  { eager: true }
+);
+
+function getProjectImages(projectName) {
+  return Object.entries(allImages)
+    .filter(([path]) => path.includes(`/portfolio/${projectName}/`))
+    .map(([, mod]) => mod.default);
+}
+
 export {
     DOMAIN,
     analize_error,
     formatDate,
+    getProjectImages
     /*isMobile */
 }

@@ -14,8 +14,7 @@ function App() {
     const fetchAllProjects = async ()=>
     {
         const response = await requestAllProjects();
-        console.log("projects");
-        console.log(response.data.projectData);
+       
     }
 
     fetchAllProjects();
@@ -26,9 +25,9 @@ function App() {
     <>
       <Routes>
         <Route path="/"  element={ <SiteTemplate />} >
-                  <Route path="aboutMe" element={<AboutMe/>} />
-                  <Route path="projects" element={<Projects/>} />
-                  <Route path="project/:id" element={<ProjectPage/>} />
+              <Route index element={<AboutMe />} />
+              <Route path="projects" element={<Projects/>} />
+              <Route path="project/:id" element={<ProjectPage/>} />
         </Route>
       </Routes>
     </>

@@ -16,9 +16,7 @@ function Projects() {
 
   const projects = data?.data.projectData;
 
-  console.log("projects!")
-  console.log(projects);
-
+  
   return (
    <>
      <Box 
@@ -48,12 +46,12 @@ function Projects() {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center" sx={{ 
+      <Grid container spacing={4}  sx={{ 
             width: '100%', 
             margin: '0 auto' // Forces the grid itself to stay centered
           }} >
             {projects?.map(p => (
-              <Grid item key={p.id || p._id} xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Grid  key={p.id || p._id} xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
                <ProjectCard project={p} />
               </Grid>
         ))}

@@ -85,6 +85,7 @@ const requestProjectAdd = async (project_obj) =>{
                 description: project_obj.description,
                 technologies: project_obj.technologies,
                 tags: project_obj.tags,
+                imagesGallery: project_obj.imagesGallery,
                 image: project_obj.image,
                 showProject: project_obj.showProject,
                 sortOrder: project_obj.sortOrder    
@@ -116,6 +117,7 @@ const requestProjectUpdate = async (project_obj)=>
                 description: project_obj.description,
                 technologies: project_obj.technologies,
                 tags: project_obj.tags,
+                imagesGallery: project_obj.imagesGallery,
                 image: project_obj.image,
                 showProject: project_obj.showProject,
                 sortOrder: project_obj.sortOrder                   

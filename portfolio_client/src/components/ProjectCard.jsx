@@ -1,4 +1,4 @@
-import { Container, Typography, Grid, Card, CardContent, CardMedia, CardActions, Button, Box, Chip,Stack,SvgIcon} from '@mui/material';
+import { Container, Typography, Card, CardContent, CardMedia, CardActions, Button, Box, Chip,Stack,SvgIcon} from '@mui/material';
 import {Link} from 'react-router-dom';
 
 const ProjectCard = ({project}) => {
@@ -46,13 +46,13 @@ const CustomLaunchIcon = (props) => (
                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 ,textAlign: "left" }}>
                   {project.short_desc}
                 </Typography> 
-             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+             <Box sx={{ display: "flex",  gap: 1 }}>
                   {project.tags.map((tag) => (
                     <Chip key={tag} label={tag} size="small" variant="outlined" />
                   ))}
                </Box>
               </CardContent>
-              <CardActions sx={{ justifyContent: 'center', px: 2, pb: 2 }}>
+              <CardActions sx={{  px: 2, pb: 2 }}>
                 {project.github_link && <Button 
                   size="small" 
                    variant="contained" 

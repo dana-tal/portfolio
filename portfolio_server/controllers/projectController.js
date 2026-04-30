@@ -127,7 +127,6 @@ const getPublicProjects = async (req,res) =>
 {
     try
     {    
-        console.log("in getPublicProjects");
         const publicProjects = await projectService.getPublicProjects();
         return res.status(200).json({ ok:true, projectData:publicProjects,message:"All public projects returned successfully"});
     }

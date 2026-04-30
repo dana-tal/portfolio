@@ -6,8 +6,9 @@ import { useMatch, useNavigate } from "react-router-dom";
 function SiteTemplate() {
 
 
-  const links = [ {link:'aboutMe', name:'About Me'},  ]; /* {link:'projects', name:'Projects'} */
+ // const links = [ {link:'aboutMe', name:'About Me'},  ];
    
+  const links = [ {link:'/', name:'About Me'},  ];
             
   return (  
     <div className="site-container" >  
