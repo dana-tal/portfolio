@@ -7,7 +7,7 @@ import Autocomplete from "@mui/material/Autocomplete";
  
 const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
 
-    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",technologies:"",short_desc:"",description:"",tags:[],imagesGallery:"",image:"",showProject:true,sortOrder:0 }, });
+    const projectForm = useForm({ defaultValues: { id:"",title: "",demo_link:"",github_link:"",video_link:"",additional_link:"",technologies:"",short_desc:"",description:"",tags:[],imagesGallery:"",image:"",showProject:true,sortOrder:0 }, });
     const { handleSubmit,control,formState: { errors },reset, setError}  = projectForm;  
 
     const [selectedProject, setSelectedProject] = useState(null); // selectedProject will be an object containing the project to be updated
@@ -24,6 +24,8 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                     title: selectedProject.title,
                     demo_link: selectedProject.demo_link,
                     github_link: selectedProject.github_link,
+                    video_link: selectedProject.video_link,
+                    additional_link: selectedProject.additional_link,
                     technologies: selectedProject.technologies,
                     short_desc: selectedProject.short_desc,
                     description: selectedProject.description,
@@ -194,6 +196,66 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                         error={!!errors.github_link}
                         helperText={errors.github_link?.message}
                         placeholder="Project Github link"
+                        sx={{ width: "100%" }}             
+                        />
+                    )}
+                    />
+                </Stack>
+
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "flex-start", sm: "center" }} sx={{ width: "100%" }}>
+                    <Typography sx={{ width: 80 }}>Video Link:</Typography>
+                    <Controller
+                    name="video_link"
+                    control={control}
+                    rules={{
+                            validate: (value) => {
+                                if (!value) return true; 
+
+                                try {
+                                new URL(value);
+                                return true;
+                                } catch {
+                                return "Invalid URL";
+                                }
+                            }
+                            }}
+                    render={({ field }) => (
+                        <TextField
+                        {...field}
+                        size="small"                        
+                        error={!!errors.video_link}
+                        helperText={errors.video_link?.message}
+                        placeholder="Project Video link"
+                        sx={{ width: "100%" }}             
+                        />
+                    )}
+                    />
+                </Stack>
+
+                 <Stack direction={{ xs: "column", sm: "row" }} spacing={1} alignItems={{ xs: "flex-start", sm: "center" }} sx={{ width: "100%" }}>
+                    <Typography sx={{ width: 80 }}>Additional Link:</Typography>
+                    <Controller
+                    name="additional_link"
+                    control={control}
+                    rules={{
+                            validate: (value) => {
+                                if (!value) return true; 
+
+                                try {
+                                new URL(value);
+                                return true;
+                                } catch {
+                                return "Invalid URL";
+                                }
+                            }
+                            }}
+                    render={({ field }) => (
+                        <TextField
+                        {...field}
+                        size="small"                        
+                        error={!!errors.additional_link}
+                        helperText={errors.additional_link?.message}
+                        placeholder="Project Additional link"
                         sx={{ width: "100%" }}             
                         />
                     )}

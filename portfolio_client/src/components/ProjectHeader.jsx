@@ -45,7 +45,35 @@ export default function ProjectHeader({ project }) {
             Live Demo
           </Button>
         )}
+
+
+          {project.video_link && (
+          <Button
+            fullWidth={{ xs: true, sm: false }}
+            variant="contained"
+            endIcon={<OpenInNewIcon />}
+            href={project.video_link}
+            target="_blank"
+          >
+            Watch a Video 
+          </Button>
+        )}
+
+
+         {project.additional_link && (
+          <Button
+            fullWidth={{ xs: true, sm: false }}
+            variant="contained"
+            endIcon={<OpenInNewIcon />}
+            href={project.additional_link}
+            target="_blank"
+          >
+           Additional Link
+          </Button>
+        )}
       </Stack>
+
+      
 
       {/* Tags */}
       {project.tags?.length > 0 && (

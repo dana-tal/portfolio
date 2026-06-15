@@ -16,8 +16,8 @@ const  AboutMe =() => {
     queryFn: requestAllProjects
   });
 
- if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Something went wrong</div>;
+ if (isLoading) return <div>Loading ... </div>;
+  if (error) return <div>Something w  ent wrong</div>;
 
 
  const projects = data?.data.projectData;
