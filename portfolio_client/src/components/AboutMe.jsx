@@ -72,9 +72,20 @@ const  AboutMe =() => {
             I enjoy solving problems, whether it’s implementing new features, debugging complex issues, or refining existing functionality. I tend to approach challenges by breaking them down, understanding the system, and finding practical, reliable solutions.
           </Typography>
 
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography variant="body1" sx={{ textAlign: "justify", mb:2 }}>
             In addition to building from scratch, I have experience working on ongoing systems — maintaining, improving, and adapting them as requirements change. This includes thinking about performance, usability, and how different parts of the application interact.
           </Typography>
+
+          <Typography variant="body1" sx={{ textAlign: "left" }}>
+              Feel free to connect with me on LinkedIn:&nbsp;
+              <a
+                href="https://www.linkedin.com/in/dana-tal-full-stack-developer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Dana Tal
+              </a>
+            </Typography>
 
             <Box sx={{ display: "flex", mt: 2 }}>
             <Button
