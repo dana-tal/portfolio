@@ -16,12 +16,8 @@ const  AboutMe =() => {
     queryFn: requestAllProjects
   });
 
- if (isLoading) return <div>Loading ... </div>;
-  if (error) return <div>Something w  ent wrong</div>;
-
-
- const projects = data?.data.projectData;
  
+  const projects = data?.data.projectData || [];
   const featuredProjects = projects.slice(0, 2) || [];
 
   return (
@@ -45,6 +41,7 @@ const  AboutMe =() => {
               src="/dana_blue2.png"
               alt="Profile"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              loading="eager"
             />
           </Box>
 
@@ -104,13 +101,13 @@ const  AboutMe =() => {
             </Button>
           </Box>
 
-            <Grid container spacing={2} sx={{ mt:2}}>
+           { !isLoading && <Grid container spacing={2} sx={{ mt:2}}>
             {featuredProjects.map((project) => (
               <Grid xs={12} sm={6} key={project.id}>
                 <ProjectCard project={project} />
               </Grid>
             ))}
-          </Grid>
+          </Grid>}
 
         </Box>
       </Paper>
