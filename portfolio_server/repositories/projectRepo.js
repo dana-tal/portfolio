@@ -24,7 +24,7 @@ const updateProject = (id, updateObj) => {
     return Project.findByIdAndUpdate(
         id,
         updateObj,
-        { new: true, runValidators: true } // returns updated doc + validates
+        {returnDocument: 'after', runValidators: true } // returns updated doc + validates
     );
 }
 
