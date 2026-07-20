@@ -57,6 +57,10 @@ const  AboutMe =() => {
             Over the years, I’ve worked across both frontend and backend, using technologies like Node.js, PHP, SQL, JavaScript, and React. I’ve built dynamic, responsive websites, developed internal tools, and integrated third-party services into existing systems.
           </Typography>
 
+          <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>  
+            I also have experience incorporating AI capabilities into applications, working with Large Language Models (LLMs), OpenAI APIs, LangChain, and LangGraph to build AI-powered workflows and enhance application functionality. In addition, I use AI-assisted coding tools such as GitHub Copilot to improve development efficiency and productivity.
+          </Typography>
+
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>
             My experience spans both legacy and modern technologies, which gives me a practical understanding of how systems evolve over time. I’m comfortable working with existing codebases, understanding their structure, and improving them in a way that keeps them stable while moving them forward.
           </Typography>
