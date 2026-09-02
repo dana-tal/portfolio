@@ -50,15 +50,15 @@ const  AboutMe =() => {
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>
-            I’m an experienced Full-Stack Developer with a strong background in building, maintaining, and improving web applications.
+           I’m an experienced Full-Stack Developer with a strong background in building, maintaining, and improving web applications, and a growing focus on AI-powered application development.
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>
-            Over the years, I’ve worked across both frontend and backend, using technologies like Node.js, PHP, SQL, JavaScript, and React. I’ve built dynamic, responsive websites, developed internal tools, and integrated third-party services into existing systems.
+            Over the years, I’ve worked across both frontend and backend, using technologies such as Node.js, React, JavaScript, SQL, and PHP. I’ve built dynamic web applications, developed internal tools, worked with existing codebases, and integrated third-party services into existing systems.
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>  
-            I also have experience incorporating AI capabilities into applications, working with Large Language Models (LLMs), OpenAI APIs, LangChain, and LangGraph to build AI-powered workflows and enhance application functionality. In addition, I use AI-assisted coding tools such as GitHub Copilot to improve development efficiency and productivity.
+            In recent projects, I’ve expanded my experience into AI application development, working with Large Language Models (LLMs), OpenAI APIs, LangChain, and LangGraph. I’ve built AI-powered workflows using AI agents and custom tools, enabling users to retrieve data and perform actions through natural language. I also have hands-on experience with the Model Context Protocol (MCP), including building MCP servers that expose application capabilities to external AI clients.
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>
@@ -70,11 +70,11 @@ const  AboutMe =() => {
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb: 2 }}>
-            I enjoy solving problems, whether it’s implementing new features, debugging complex issues, or refining existing functionality. I tend to approach challenges by breaking them down, understanding the system, and finding practical, reliable solutions.
+           I enjoy solving problems, whether it’s implementing new features, debugging complex issues, integrating AI capabilities, or refining existing functionality. I tend to approach challenges by breaking them down, understanding the system, and finding practical, reliable solutions.
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "justify", mb:2 }}>
-            In addition to building from scratch, I have experience working on ongoing systems — maintaining, improving, and adapting them as requirements change. This includes thinking about performance, usability, and how different parts of the application interact.
+           In addition to building applications from scratch, I have experience working on ongoing systems — maintaining, improving, and adapting them as requirements change. This includes thinking about performance, usability, system architecture, and how different parts of an application interact.
           </Typography>
 
           <Typography variant="body1" sx={{ textAlign: "left" }}>
