@@ -379,7 +379,7 @@ const ProjectForm = ({ onAddProject , onUpdateProject, projectId="" }) =>{
                  rules={{ 
                         required: "Project short description is missing." ,
                         minLength: { value: 5, message: "Description must be at least 5 characters" },
-                        maxLength: { value: 400, message: "Description cannot exceed 400 characters" },    
+                        maxLength: { value: 300, message: "Short description cannot exceed 300 characters" },    
                          validate: (value) => {
                                 if (forbiddenChars.test(value)) {
                                     return "Short description contains forbidden characters: < > { } [ ]";
